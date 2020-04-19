@@ -57,116 +57,114 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-            child: Stack(
-              children: <Widget>[
+    return Stack(
+      children: <Widget>[
+        Positioned(
+          child: Stack(
+            children: <Widget>[
 
-                //Add note / Diary button
-                Transform.translate(
-                  offset: Offset.fromDirection(getRadiansFromDegree(180),d1egreeTranslation.value * 100),
-                  child: Transform(
-                    alignment: Alignment.center,
-                    transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d1egreeTranslation.value),
-                    child: CircularButton(
-                      height: 60,
-                      width: 60,
-                      color: Colors.red,
-                      icon: Icon(
-                        Icons.note_add,
-                        color: Colors.white,
-                      ),
-                      onClick: () {},
-                    ),
-                  ),
-                ),
-
-                // list to-do
-                Transform.translate(
-                  offset: Offset.fromDirection(getRadiansFromDegree(240),d2egreeTranslation.value * 100),
-                  child: Transform(
-                    alignment: Alignment.center,
-                    transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d2egreeTranslation.value),
-                    child: CircularButton(
-                      height: 60,
-                      width: 60,
-                      color: Colors.red,
-                      icon: Icon(
-                        Icons.list,
-                        color: Colors.white,
-                      ),
-                      onClick: () {},
-                    ),
-                  ),
-                ),
-
-                //temporary notepad
-                Transform.translate(
-                  offset: Offset.fromDirection(getRadiansFromDegree(300),d3egreeTranslation.value * 100),
-                  child: Transform(
-                    alignment: Alignment.center,
-                    transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d3egreeTranslation.value),
-                    child: CircularButton(
-                      height: 60,
-                      width: 60,
-                      color: Colors.red,
-                      icon: Icon(
-                        Icons.note,
-                        color: Colors.white,
-                      ),
-                      onClick: () {},
-                    ),
-                  ),
-                ),
-
-                //Travelling Cost button
-                Transform.translate(
-                  offset: Offset.fromDirection(getRadiansFromDegree(360),d4egreeTranslation.value * 100),
-                  child: Transform(
-                    alignment: Alignment.center,
-                    transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d4egreeTranslation.value),
-                    child: CircularButton(
-                      height: 60,
-                      width: 60,
-                      color: Colors.red,
-                      icon: Icon(
-                        Icons.monetization_on,
-                        color: Colors.white,
-                      ),
-                      onClick: () {},
-                    ),
-                  ),
-                ),
-
-                //Main middle Button
-                Transform(
+              //Add note / Diary button
+              Transform.translate(
+                offset: Offset.fromDirection(getRadiansFromDegree(180),d1egreeTranslation.value * 100),
+                child: Transform(
                   alignment: Alignment.center,
-                  transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value)),
+                  transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d1egreeTranslation.value),
                   child: CircularButton(
                     height: 60,
                     width: 60,
                     color: Colors.red,
                     icon: Icon(
-                      Icons.menu,
+                      Icons.note_add,
                       color: Colors.white,
                     ),
-                    onClick: () {
-                      if(animationController.isCompleted) {
-                        animationController.reverse();
-                      }
-                      else {
-                        animationController.forward();
-                      }
-                    },
+                    onClick: () {},
                   ),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+                ),
+              ),
+
+              // list to-do
+              Transform.translate(
+                offset: Offset.fromDirection(getRadiansFromDegree(240),d2egreeTranslation.value * 100),
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d2egreeTranslation.value),
+                  child: CircularButton(
+                    height: 60,
+                    width: 60,
+                    color: Colors.red,
+                    icon: Icon(
+                      Icons.list,
+                      color: Colors.white,
+                    ),
+                    onClick: () {},
+                  ),
+                ),
+              ),
+
+              //temporary notepad
+              Transform.translate(
+                offset: Offset.fromDirection(getRadiansFromDegree(300),d3egreeTranslation.value * 100),
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d3egreeTranslation.value),
+                  child: CircularButton(
+                    height: 60,
+                    width: 60,
+                    color: Colors.red,
+                    icon: Icon(
+                      Icons.note,
+                      color: Colors.white,
+                    ),
+                    onClick: () {},
+                  ),
+                ),
+              ),
+
+              //Travelling Cost button
+              Transform.translate(
+                offset: Offset.fromDirection(getRadiansFromDegree(360),d4egreeTranslation.value * 100),
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d4egreeTranslation.value),
+                  child: CircularButton(
+                    height: 60,
+                    width: 60,
+                    color: Colors.red,
+                    icon: Icon(
+                      Icons.monetization_on,
+                      color: Colors.white,
+                    ),
+                    onClick: () {},
+                  ),
+                ),
+              ),
+
+              //Main middle Button
+              Transform(
+                alignment: Alignment.center,
+                transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value)),
+                child: CircularButton(
+                  height: 60,
+                  width: 60,
+                  color: Colors.red,
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.white,
+                  ),
+                  onClick: () {
+                    if(animationController.isCompleted) {
+                      animationController.reverse();
+                    }
+                    else {
+                      animationController.forward();
+                    }
+                  },
+                ),
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 }
