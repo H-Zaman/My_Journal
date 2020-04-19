@@ -26,7 +26,7 @@ class _PackageFabState extends State<PackageFab> {
         IconButton(
           icon: Icon(Icons.monetization_on),
           onPressed: () {},
-        ),
+        )
       ],
     );
   }

@@ -6,8 +6,15 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: CustomFab()),
-      floatingActionButton: PackageFab(),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 200),
+        child: Align(
+
+            alignment: Alignment.topCenter,
+            child: CustomFab()),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Center(child: PackageFab()),
     );
   }
 }
