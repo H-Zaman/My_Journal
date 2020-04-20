@@ -6,6 +6,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'eyyy'
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 200),
         child: Align(
@@ -13,8 +18,6 @@ class HomeScreen extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: CustomFab()),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Center(child: PackageFab()),
     );
   }
 }

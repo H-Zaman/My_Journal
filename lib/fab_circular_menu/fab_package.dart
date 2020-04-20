@@ -10,6 +10,8 @@ class _PackageFabState extends State<PackageFab> {
   @override
   Widget build(BuildContext context) {
     return FabCircularMenu(
+      //position
+      alignment: Alignment.bottomCenter,
       children: <Widget>[
         IconButton(
           icon: Icon(Icons.note_add),
