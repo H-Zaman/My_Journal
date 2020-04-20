@@ -81,8 +81,8 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                     icon: Icon(
                       Icons.note_add,
                       color: Colors.white,
+                      size: 30,
                     ),
-
                     onClick: () {
                       print('working button');
                     },
@@ -104,6 +104,7 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                     icon: Icon(
                       Icons.event_note,
                       color: Colors.white,
+                      size: 30,
                     ),
                     onClick: () {
                       print('working button');
@@ -125,9 +126,10 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                     icon: Icon(
                       Icons.list,
                       color: Colors.white,
+                      size: 30,
                     ),
                     onClick: () {
-                      print('working button');
+                      print('asdlasldmsald');
                     },
                   ),
                 ),
@@ -146,6 +148,7 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                     icon: Icon(
                       Icons.monetization_on,
                       color: Colors.white,
+                      size: 30,
                     ),
                     onClick: () {
                       print('working button');
@@ -167,6 +170,7 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                     icon: Icon(
                       Icons.note,
                       color: Colors.white,
+                      size: 30,
                     ),
                     onClick: () {
                       Navigator.pushNamed(context,'/temp') ;
@@ -189,6 +193,7 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                     color: Colors.white,
                   ),
                   onClick: () {
+                    print('main button');
                     if(animationController.isCompleted) {
                       animationController.reverse();
                     }
