@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/screens/home/pages/diary_add.dart';
+import 'package:myapp/screens/home/pages/diary_view.dart';
+import 'package:myapp/screens/home/pages/todo_list.dart';
+import 'package:myapp/screens/home/pages/travelling_cost.dart';
 import 'package:myapp/screens/home/temporaryNote.dart';
 import 'package:myapp/screens/wrapper.dart';
 
@@ -12,6 +16,10 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/' : (context)=> Wrapper(),
+        '/diaryAdd' : (context)=> DiaryADD(),
+        '/diaryView' : (context)=> DiaryView(),
+        '/todo' : (context)=> TodoListPage(),
+        '/travel' : (context)=> TravellingCost(),
         '/temp' : (context)=> TemporaryPage(),
       },
 

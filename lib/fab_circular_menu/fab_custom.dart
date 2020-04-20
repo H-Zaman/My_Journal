@@ -67,7 +67,6 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
         Positioned(
           child: Stack(
             children: <Widget>[
-
               //Add note / Diary button
               Transform.translate(
                 offset: Offset.fromDirection(getRadiansFromDegree(180),d1egreeTranslation.value * 100),
@@ -84,9 +83,8 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                       size: 30,
                     ),
                     onClick: () {
-                      print('working button');
+                      print('Button 111111111111');
                     },
-
                   ),
                 ),
               ),
@@ -107,7 +105,7 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                       size: 30,
                     ),
                     onClick: () {
-                      print('working button');
+                      print('working button 22222222222222222222222');
                     },
                   ),
                 ),
@@ -129,7 +127,7 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                       size: 30,
                     ),
                     onClick: () {
-                      print('asdlasldmsald');
+                      print('333333333333333333333333333333333333');
                     },
                   ),
                 ),
@@ -151,7 +149,7 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                       size: 30,
                     ),
                     onClick: () {
-                      print('working button');
+                      print('working button44444444444444444444444444444444');
                     },
                   ),
                 ),
@@ -174,7 +172,7 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                     ),
                     onClick: () {
                       Navigator.pushNamed(context,'/temp') ;
-                      print('working button');
+                      print('working button55555555555555555555555555');
                     },
                   ),
                 ),
@@ -193,7 +191,6 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                     color: Colors.white,
                   ),
                   onClick: () {
-                    print('main button');
                     if(animationController.isCompleted) {
                       animationController.reverse();
                     }

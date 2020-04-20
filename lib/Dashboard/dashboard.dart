@@ -70,14 +70,20 @@ class _DashboardState extends State<Dashboard> {
           children: <Widget>[
             dashItems(Icons.graphic_eq,'Last Item on Diary',Colors.red),
             dashItems(Icons.add,'todo list item',Colors.red),
+            dashItems(Icons.access_time,'US time',Colors.red),
             dashItems(Icons.monetization_on,'Money',Colors.lime),
             dashItems(Icons.view_list,'Total six',Colors.red),
           ],
           staggeredTiles: [
             //Diary Item
             StaggeredTile.extent(2,130),
+
             //list to-do
+            StaggeredTile.extent(1,300),
+
+            //US time
             StaggeredTile.extent(1,150),
+
             //Travelling cost
             StaggeredTile.extent(1,150),
             //temp page
