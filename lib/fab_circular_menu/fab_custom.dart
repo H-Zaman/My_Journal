@@ -82,7 +82,11 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                       Icons.note_add,
                       color: Colors.white,
                     ),
-                    onClick: () {},
+
+                    onClick: () {
+                      print('working button');
+                    },
+
                   ),
                 ),
               ),
@@ -101,7 +105,9 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                       Icons.event_note,
                       color: Colors.white,
                     ),
-                    onClick: () {},
+                    onClick: () {
+                      print('working button');
+                    },
                   ),
                 ),
               ),
@@ -120,12 +126,14 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                       Icons.list,
                       color: Colors.white,
                     ),
-                    onClick: () {},
+                    onClick: () {
+                      print('working button');
+                    },
                   ),
                 ),
               ),
 
-              //temporary notepad
+              //Travelling Cost button
               Transform.translate(
                 offset: Offset.fromDirection(getRadiansFromDegree(315),d4egreeTranslation.value * 100),
                 child: Transform(
@@ -139,12 +147,14 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                       Icons.monetization_on,
                       color: Colors.white,
                     ),
-                    onClick: () {},
+                    onClick: () {
+                      print('working button');
+                    },
                   ),
                 ),
               ),
 
-              //Travelling Cost button
+              //temporary notepad
               Transform.translate(
                 offset: Offset.fromDirection(getRadiansFromDegree(360),d3egreeTranslation.value * 100),
                 child: Transform(
@@ -158,7 +168,10 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                       Icons.note,
                       color: Colors.white,
                     ),
-                    onClick: () {},
+                    onClick: () {
+                      Navigator.pushNamed(context,'/temp') ;
+                      print('working button');
+                    },
                   ),
                 ),
               ),
@@ -192,7 +205,6 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
     );
   }
 }
-
 
 class CircularButton extends StatelessWidget {
 

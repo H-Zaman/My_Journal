@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/screens/home/temporaryNote.dart';
 import 'package:myapp/screens/wrapper.dart';
 
 void main() => runApp(MyApp());
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/' : (context)=> Wrapper(),
+        '/temp' : (context)=> TemporaryPage(),
       },
 
       debugShowCheckedModeBanner: false,
