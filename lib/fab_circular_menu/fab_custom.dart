@@ -57,6 +57,9 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
+
+    final double btnSize = 70;
+
     return Stack(
       children: <Widget>[
         Positioned(
@@ -70,8 +73,8 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                   alignment: Alignment.center,
                   transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d1egreeTranslation.value),
                   child: CircularButton(
-                    height: 60,
-                    width: 60,
+                    height: btnSize,
+                    width: btnSize,
                     color: Colors.red,
                     icon: Icon(
                       Icons.note_add,
@@ -82,15 +85,34 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                 ),
               ),
 
+              //View note / View Diary button
+              Transform.translate(
+                offset: Offset.fromDirection(getRadiansFromDegree(225),d1egreeTranslation.value * 100),
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d1egreeTranslation.value),
+                  child: CircularButton(
+                    height: btnSize,
+                    width: btnSize,
+                    color: Colors.red,
+                    icon: Icon(
+                      Icons.event_note,
+                      color: Colors.white,
+                    ),
+                    onClick: () {},
+                  ),
+                ),
+              ),
+
               // list to-do
               Transform.translate(
-                offset: Offset.fromDirection(getRadiansFromDegree(240),d2egreeTranslation.value * 100),
+                offset: Offset.fromDirection(getRadiansFromDegree(270),d2egreeTranslation.value * 100),
                 child: Transform(
                   alignment: Alignment.center,
                   transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d2egreeTranslation.value),
                   child: CircularButton(
-                    height: 60,
-                    width: 60,
+                    height: btnSize,
+                    width: btnSize,
                     color: Colors.red,
                     icon: Icon(
                       Icons.list,
@@ -103,16 +125,16 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
 
               //temporary notepad
               Transform.translate(
-                offset: Offset.fromDirection(getRadiansFromDegree(300),d3egreeTranslation.value * 100),
+                offset: Offset.fromDirection(getRadiansFromDegree(315),d4egreeTranslation.value * 100),
                 child: Transform(
                   alignment: Alignment.center,
-                  transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d3egreeTranslation.value),
+                  transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d4egreeTranslation.value),
                   child: CircularButton(
-                    height: 60,
-                    width: 60,
+                    height: btnSize,
+                    width: btnSize,
                     color: Colors.red,
                     icon: Icon(
-                      Icons.note,
+                      Icons.monetization_on,
                       color: Colors.white,
                     ),
                     onClick: () {},
@@ -122,16 +144,16 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
 
               //Travelling Cost button
               Transform.translate(
-                offset: Offset.fromDirection(getRadiansFromDegree(360),d4egreeTranslation.value * 100),
+                offset: Offset.fromDirection(getRadiansFromDegree(360),d3egreeTranslation.value * 100),
                 child: Transform(
                   alignment: Alignment.center,
-                  transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d4egreeTranslation.value),
+                  transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d3egreeTranslation.value),
                   child: CircularButton(
-                    height: 60,
-                    width: 60,
+                    height: btnSize,
+                    width: btnSize,
                     color: Colors.red,
                     icon: Icon(
-                      Icons.monetization_on,
+                      Icons.note,
                       color: Colors.white,
                     ),
                     onClick: () {},
@@ -144,8 +166,8 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
                 alignment: Alignment.center,
                 transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value)),
                 child: CircularButton(
-                  height: 60,
-                  width: 60,
+                  height: btnSize,
+                  width: btnSize,
                   color: Colors.red,
                   icon: Icon(
                     Icons.menu,
@@ -176,9 +198,10 @@ class CircularButton extends StatelessWidget {
   final double width;
   final Color color;
   final Icon icon;
+  final String text;
   final Function onClick;
 
-  CircularButton({this.height,this.width,this.icon,this.color,this.onClick});
+  CircularButton({this.text,this.height,this.width,this.icon,this.color,this.onClick});
 
   @override
   Widget build(BuildContext context) {
