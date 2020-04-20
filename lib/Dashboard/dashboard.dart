@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:myapp/Dashboard/tileConfigs/customFabTile.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -72,21 +71,17 @@ class _DashboardState extends State<Dashboard> {
             dashItems(Icons.graphic_eq,'Last Item on Diary',Colors.red),
             dashItems(Icons.add,'todo list item',Colors.red),
             dashItems(Icons.monetization_on,'Money',Colors.lime),
-
-            //Custom FAB tile
-            TileCustomFab(),
-
             dashItems(Icons.view_list,'Total six',Colors.red),
           ],
           staggeredTiles: [
+            //Diary Item
             StaggeredTile.extent(2,130),
+            //list to-do
             StaggeredTile.extent(1,150),
+            //Travelling cost
             StaggeredTile.extent(1,150),
-
-            //Custom FAB tile
+            //temp page
             StaggeredTile.extent(2,220),
-
-            StaggeredTile.extent(1,150),
           ],
         ),
       ),

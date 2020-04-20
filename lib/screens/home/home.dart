@@ -8,6 +8,13 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Dashboard(),
+    floatingActionButton: Align(
+        alignment: Alignment.bottomCenter,
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 20.0),
+          child: CustomFab(),
+        )
+    ),
     );
   }
 }
