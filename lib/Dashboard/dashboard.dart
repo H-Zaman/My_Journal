@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:myapp/Dashboard/tileConfigs/customFabTile.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -28,6 +30,7 @@ class _DashboardState extends State<Dashboard> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         title,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: color,
                           fontSize: 20,
@@ -69,14 +72,20 @@ class _DashboardState extends State<Dashboard> {
             dashItems(Icons.graphic_eq,'Last Item on Diary',Colors.red),
             dashItems(Icons.add,'todo list item',Colors.red),
             dashItems(Icons.monetization_on,'Money',Colors.lime),
-            dashItems(Icons.home,'Total five',Colors.red),
+
+            //Custom FAB tile
+            TileCustomFab(),
+
             dashItems(Icons.view_list,'Total six',Colors.red),
           ],
           staggeredTiles: [
             StaggeredTile.extent(2,130),
             StaggeredTile.extent(1,150),
             StaggeredTile.extent(1,150),
-            StaggeredTile.extent(2,350),
+
+            //Custom FAB tile
+            StaggeredTile.extent(2,220),
+
             StaggeredTile.extent(1,150),
           ],
         ),

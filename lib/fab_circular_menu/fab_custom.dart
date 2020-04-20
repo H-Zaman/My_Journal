@@ -15,7 +15,7 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
   }
 
   AnimationController animationController;
-  Animation d1egreeTranslation,d2egreeTranslation,d3egreeTranslation,d4egreeTranslation;
+  Animation d1egreeTranslation,d2egreeTranslation,d3egreeTranslation,d4egreeTranslation,d5egreeTranslation;
   Animation rotationAnimation;
 
   @override
@@ -40,6 +40,10 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
       TweenSequenceItem<double>(tween: Tween(begin: 0.0,end: 1.4),weight: 20),
       TweenSequenceItem<double>(tween: Tween(begin: 1.4,end: 1.0),weight: 60),
     ]).animate(animationController);
+    d5egreeTranslation = TweenSequence([
+      TweenSequenceItem<double>(tween: Tween(begin: 0.0,end: 1.15),weight: 70),
+      TweenSequenceItem<double>(tween: Tween(begin: 1.15,end: 1.0),weight: 30),
+    ]).animate(animationController);
     rotationAnimation = Tween(
       begin: 0.0,
       end: 180.0,
@@ -49,9 +53,7 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
     ));
     super.initState();
     animationController.addListener(() {
-      setState(() {
-
-      });
+      setState(() {});
     });
   }
 
@@ -87,7 +89,7 @@ class _CustomFabState extends State<CustomFab> with SingleTickerProviderStateMix
 
               //View note / View Diary button
               Transform.translate(
-                offset: Offset.fromDirection(getRadiansFromDegree(225),d1egreeTranslation.value * 100),
+                offset: Offset.fromDirection(getRadiansFromDegree(225),d5egreeTranslation.value * 100),
                 child: Transform(
                   alignment: Alignment.center,
                   transform: Matrix4.rotationZ(getRadiansFromDegree(rotationAnimation.value))..scale(d1egreeTranslation.value),
