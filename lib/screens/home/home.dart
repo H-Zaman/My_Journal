@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:myapp/fab_circular_menu/fab_lee.dart';
 
@@ -14,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Material(
       color: Colors.white,
       elevation: 20,
-      shadowColor: Colors.brown,
+      shadowColor: Colors.blueGrey,
       borderRadius: BorderRadius.circular(25.0),
       child: Center(
         child: Padding(
@@ -59,8 +60,16 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Map data = {};
+
   @override
   Widget build(BuildContext context) {
+
+    /*receive-ing the time data from the loading widget*/
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
+    print(data);
+
+
     return Scaffold(
       body: SafeArea(
         child: StaggeredGridView.count(
@@ -71,7 +80,35 @@ class _HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             dashItems(Icons.graphic_eq,'Diary',Colors.red),
             dashItems(Icons.add,'todo list item',Colors.red),
-            dashItems(Icons.access_time,'US time',Colors.red),
+
+            //Showing time Tile,
+            Material(
+              color: Colors.white,
+              elevation: 20,
+              shadowColor: Colors.blueGrey,
+              borderRadius: BorderRadius.circular(10),
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(2.0),
+                  child: ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/temp');/**/
+                    },
+                    leading: CircleAvatar(
+                      radius: 20.0,
+                      backgroundImage: AssetImage('assets/flag/${data['flag']}'),
+                    ),
+                    title: Text(
+                      data['location']
+                    ),
+                    subtitle: Text(
+                      data['time']
+                    ),
+                  )
+                ),
+              ),
+            ),
+
             dashItems(Icons.monetization_on,'Money',Colors.lime),
             dashItems(Icons.view_list,'Total six',Colors.red),
           ],
@@ -84,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
             StaggeredTile.extent(1,300),
 
             //US time
-            StaggeredTile.extent(1,150),
+            StaggeredTile.extent(1,80),
 
             //Travelling cost
             StaggeredTile.extent(1,150),

@@ -16,11 +16,12 @@ class SetupTime{
       //making request to get time
       Response response = await get('http://worldtimeapi.org/api/timezone/$url');
       Map data = jsonDecode(response.body);
+//      print (data);
 
       //getting properties from the mapped data individually
       String datetime = data['datetime'];
       String offset = data['utc_offset'];
-      offset = offset.substring(1,3);
+      offset = offset.substring(0,3);
 
       //making the date time
       DateTime currTime = DateTime.parse(datetime);
