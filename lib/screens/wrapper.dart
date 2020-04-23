@@ -23,13 +23,20 @@ class _WrapperState extends State<Wrapper> {
     );
     /*waiting for time to get here*/
     await setupTime.getTime();
-    /*when time is here we go to the home page with the time data*/
-    Navigator.pushNamed(context, '/home',arguments: {
-      'location' : setupTime.location,
-      'flag' : setupTime.flag,
-      'time' : setupTime.time,
-    });
 
+    if(setupTime.time == null){
+      //if no internet goes to temp page
+      Navigator.pushNamed(context, '/temp');
+    }
+    else{
+
+      /*when time is here we go to the home page with the time data*/
+      Navigator.pushNamed(context, '/home',arguments: {
+        'location' : setupTime.location,
+        'flag' : setupTime.flag,
+        'time' : setupTime.time,
+      });
+    }
   }
 
   @override
