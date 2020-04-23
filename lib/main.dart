@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp/screens/home/home.dart';
 import 'package:myapp/screens/home/pages/diary_add.dart';
 import 'package:myapp/screens/home/pages/diary_view.dart';
+import 'package:myapp/screens/home/pages/timeChangeLocation.dart';
 import 'package:myapp/screens/home/pages/todo_list.dart';
 import 'package:myapp/screens/home/pages/travelling_cost.dart';
 import 'package:myapp/screens/home/temporaryNote.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         '/todo' : (context)=> TodoListPage(),
         '/travel' : (context)=> TravellingCost(),
         '/temp' : (context)=> TemporaryPage(),
+        '/time' : (context)=> ChangeTimeLocation(),
       },
 
       debugShowCheckedModeBanner: false,

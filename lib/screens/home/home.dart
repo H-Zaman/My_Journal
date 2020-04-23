@@ -60,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  //a MAP to store all time related data's
   Map data = {};
 
   @override
@@ -67,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     /*receive-ing the time data from the loading widget*/
     data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
-    print(data);
+//    print(data);
 
 
     return Scaffold(
@@ -82,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
             dashItems(Icons.add,'todo list item',Colors.red),
 
             //Showing time Tile,
+            //TODO make time auto update each minute
             Material(
               color: Colors.white,
               elevation: 20,
@@ -91,8 +93,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Padding(
                   padding: EdgeInsets.all(2.0),
                   child: ListTile(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/temp');/**/
+                    onTap: () async{
+                      //goes to selecting time page
+                      dynamic result = await Navigator.pushNamed(context, '/time');
+                      setState(() {
+                        data = {
+                          'time' : result['time'],
+                          'location' : result['location'],
+                          'flag' : result['flag']
+                        };
+                      });
                     },
                     leading: CircleAvatar(
                       radius: 20.0,
@@ -120,24 +130,25 @@ class _HomeScreenState extends State<HomeScreen> {
             //list to-do
             StaggeredTile.extent(1,300),
 
-            //US time
+            //US time tile
             StaggeredTile.extent(1,80),
 
             //Travelling cost
-            StaggeredTile.extent(1,150),
+            StaggeredTile.extent(1,205),
             //temp page
             StaggeredTile.extent(2,220),
           ],
         ),
       ),
 
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(left: 34.0),
-        child: Align(
-            alignment: Alignment.bottomCenter,
-            child: CustomFabLee()
-        ),
-      ),
+// floating action button not working nicely
+//      floatingActionButton: Padding(
+//        padding: const EdgeInsets.only(left: 34.0),
+//        child: Align(
+//            alignment: Alignment.bottomCenter,
+//            child: CustomFabLee()
+//        ),
+//      ),
     );
   }
 }
