@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -54,6 +53,7 @@ class _TemporaryPageState extends State<TemporaryPage> {
             )
           ],
         ),
+        body: Text('body'),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {},
           label: Text('Add'),
