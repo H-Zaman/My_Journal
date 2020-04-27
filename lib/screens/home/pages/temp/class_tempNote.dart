@@ -1,28 +1,22 @@
-import 'package:myapp/main.dart';
-
-class TodoItem{
+class TodoItems {
   int id;
   int level;
-  String todoItem;
+  String item;
 
-  TodoItem({this.id,this.level,this.todoItem});
+  TodoItems(this.id, this.level, this.item);
 
-  //convert to MapData to store in db
   Map<String, dynamic> toMap() {
-
-    var map = <String, dynamic> {
-      'id' : id,
+    var map = <String, dynamic>{
+      'id': id,
       'level' : level,
-      'item' : todoItem,
+      'item': item,
     };
     return map;
   }
 
-  //convert to string to show in APP
-  TodoItem.fromMap(Map<String, dynamic> map) {
-
+  TodoItems.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     level = map['level'];
-    todoItem = map['item'];
+    item = map['item'];
   }
 }

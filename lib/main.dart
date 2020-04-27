@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         '/diaryView' : (context)=> DiaryView(),
         '/todo' : (context)=> TodoListPage(),
         '/travel' : (context)=> TravellingCost(),
-        '/temp' : (context)=> TemporaryPage(),
+        '/temp' : (context)=> TemporaryNotePad(),
         '/time' : (context)=> ChangeTimeLocation(),
       },
 
