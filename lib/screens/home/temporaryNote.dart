@@ -298,8 +298,15 @@ class _TemporaryNotePadState extends State<TemporaryNotePad> {
 
   ////////////////////////////////// FUNCTIONS /////////////////////////////////////
 
+  Map data = {};
+  bool internetStatus ;
+
   @override
   Widget build(BuildContext context) {
+
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
+    internetStatus = data['internet'];
+
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
@@ -314,6 +321,7 @@ class _TemporaryNotePadState extends State<TemporaryNotePad> {
           padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
             radius: 10.0,
+            //TODO change image tempPage icon
             backgroundImage: AssetImage('assets/flag/bd.png'),
           ),
         ),
@@ -326,16 +334,16 @@ class _TemporaryNotePadState extends State<TemporaryNotePad> {
                 borderRadius: BorderRadius.circular(30.0)
               ),
               onPressed: () {
-                SystemNavigator.pop();
+                internetStatus ? Navigator.pop(context) : SystemNavigator.pop();
               },
               child: Row(
                 children: <Widget>[
                   Icon(
-                    Icons.close,
+                    internetStatus ? Icons.keyboard_return : Icons.close,
                     size: 20,
                   ),
                   Text(
-                    'Close',
+                    internetStatus ? 'Back' : 'Close',
                     style: TextStyle(
                       fontSize: 16,
                     ),
@@ -347,6 +355,7 @@ class _TemporaryNotePadState extends State<TemporaryNotePad> {
         ],
       ),
 
+      //TODO add a background image tempPage
       body: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,

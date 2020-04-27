@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:myapp/screens/home/home.dart';
 import 'package:myapp/services/setup_time.dart';
 
 //Wrapper decides based on if the device has internet connection or not
@@ -26,7 +25,9 @@ class _WrapperState extends State<Wrapper> {
 
     if(setupTime.time == null){
       //if no internet goes to temp page
-      Navigator.pushNamed(context, '/temp');
+      Navigator.pushNamed(context, '/temp',arguments: {
+        'internet': false,
+      });
     }
     else{
 
@@ -70,6 +71,6 @@ class _WrapperState extends State<Wrapper> {
           )
         ],
       ),
-    );;
+    );
   }
 }
