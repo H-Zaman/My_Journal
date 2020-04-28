@@ -5,6 +5,7 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:myapp/database/Database.dart';
 import 'package:myapp/screens/home/pages/temp/class_tempNote.dart';
+import 'package:myapp/shared/bg_image.dart';
 
 class TemporaryNotePad extends StatefulWidget {
   @override
@@ -358,12 +359,7 @@ class _TemporaryNotePadState extends State<TemporaryNotePad> {
 
       //TODO add a background image tempPage
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/backgrounds/black-red.jpg'),
-            fit: BoxFit.fill
-          )
-        ),
+        decoration: customBackgroundImage('assets/backgrounds/black-red.jpg'),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,

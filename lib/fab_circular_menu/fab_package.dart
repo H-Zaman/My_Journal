@@ -1,4 +1,5 @@
 import 'package:fab_circular_menu/fab_circular_menu.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PackageFab extends StatefulWidget {
@@ -10,12 +11,21 @@ class _PackageFabState extends State<PackageFab> {
   @override
   Widget build(BuildContext context) {
     return FabCircularMenu(
+      ringDiameter: 300.0,
+      ringWidth: 60.0,
+      fabMargin: EdgeInsets.all(20.0),
+      ringColor: Colors.white54,
+      fabColor: Colors.white10,
+      fabOpenIcon: Icon(Icons.settings),
       //position
-      alignment: Alignment.bottomCenter,
+//      alignment: Alignment.bottomCenter,
       children: <Widget>[
+        //Diary
         IconButton(
           icon: Icon(Icons.note_add),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/diaryAdd');
+          },
         ),
         IconButton(
           icon: Icon(Icons.list),
@@ -28,6 +38,12 @@ class _PackageFabState extends State<PackageFab> {
         IconButton(
           icon: Icon(Icons.monetization_on),
           onPressed: () {},
+        ),
+        IconButton(
+          icon: Icon(Icons.speaker_notes_off),
+          onPressed: () {
+            Navigator.pushNamed(context, '/temp',arguments: {'internet' : true});
+          },
         )
       ],
     );
