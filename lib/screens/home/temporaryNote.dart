@@ -308,7 +308,9 @@ class _TemporaryNotePadState extends State<TemporaryNotePad> {
     internetStatus = data['internet'];
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.white70,
         titleSpacing: 0,
         title: Text(
           'Temporary Note-Pad',
@@ -321,15 +323,14 @@ class _TemporaryNotePadState extends State<TemporaryNotePad> {
           padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
             radius: 10.0,
-            //TODO change image tempPage icon
-            backgroundImage: AssetImage('assets/flag/bd.png'),
+            backgroundImage: AssetImage('assets/backgrounds/sword.jpg'),
           ),
         ),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: RaisedButton(
-              color: Colors.red,
+              color: internetStatus ? Colors.green : Colors.red,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0)
               ),
@@ -356,14 +357,22 @@ class _TemporaryNotePadState extends State<TemporaryNotePad> {
       ),
 
       //TODO add a background image tempPage
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        verticalDirection: VerticalDirection.down,
-        children: <Widget>[
-          list(),
-          formShow ? Text('') : form(),
-        ],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/backgrounds/black-red.jpg'),
+            fit: BoxFit.fill
+          )
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          verticalDirection: VerticalDirection.down,
+          children: <Widget>[
+            list(),
+            formShow ? Text('') : form(),
+          ],
+        ),
       ),
       floatingActionButton: fabshow ? Text('') : FloatingActionButton.extended(
           onPressed: (){
@@ -372,6 +381,7 @@ class _TemporaryNotePadState extends State<TemporaryNotePad> {
               fabshow = !fabshow;
             });
           },
+          backgroundColor: Colors.white70,
           icon: Icon(
             isUpdating ? Icons.update : Icons.add_box
           ),
@@ -382,4 +392,3 @@ class _TemporaryNotePadState extends State<TemporaryNotePad> {
     );
   }
 }
-

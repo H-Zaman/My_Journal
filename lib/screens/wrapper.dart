@@ -46,7 +46,8 @@ class _WrapperState extends State<Wrapper> {
     setupTime();
   }
 
- /*This is the loading widget it will start up when the app start and keep working while we get the time data*/
+ /*This is the loading widget it will start up when the app start and
+  keep working while we get the time data*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(

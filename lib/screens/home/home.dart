@@ -139,15 +139,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-
-// floating action button not working nicely
-//      floatingActionButton: Padding(
-//        padding: const EdgeInsets.only(left: 34.0),
-//        child: Align(
-//            alignment: Alignment.bottomCenter,
-//            child: CustomFabLee()
-//        ),
-//      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.pushNamed(context, '/temp', arguments: {
+            'internet' : true
+          });
+        },
+      ),
     );
   }
 }
