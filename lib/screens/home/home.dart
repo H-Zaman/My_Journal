@@ -78,13 +78,13 @@ class _HomeScreenState extends State<HomeScreen> {
         decoration: customBackgroundImage('assets/backgrounds/blur/app-blurred-bg-3.jpg'),
         child: SafeArea(
           child: StaggeredGridView.count(
-            crossAxisCount: 2,
+            crossAxisCount: 10,
             crossAxisSpacing: 12.0,
             mainAxisSpacing: 12.0,
             padding: EdgeInsets.all(15.0),
             children: <Widget>[
               dashItems(Icons.graphic_eq,'Diary',Colors.red),
-              dashItems(Icons.add,'todo list item',Colors.red),
+              //dashItems(Icons.add,'todo list item',Colors.red),
 
               //Showing time Tile,
               //TODO make time auto update each minute
@@ -104,7 +104,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           data = {
                             'time' : result['time'],
                             'location' : result['location'],
-                            'flag' : result['flag']
+                            'flag' : result['flag'],
+                            'date' : result['date'],
                           };
                         });
                       },
@@ -113,34 +114,39 @@ class _HomeScreenState extends State<HomeScreen> {
                         backgroundImage: AssetImage('assets/flag/${data['flag']}'),
                       ),
                       title: Text(
-                        data['location']
+                        data['time'],
+                        style: TextStyle(
+                          fontSize: 22
+                        ),
                       ),
                       subtitle: Text(
-                        data['time']
+                        data['date'],
+                        style: TextStyle(
+                          fontSize: 18
+                        ),
                       ),
                     )
                   ),
                 ),
               ),
 
-              dashItems(Icons.monetization_on,'Money',Colors.lime),
-              dashItems(Icons.view_list,'Total six',Colors.red),
+              //dashItems(Icons.monetization_on,'Money',Colors.lime),
+              //dashItems(Icons.view_list,'EXTRA',Colors.red),
             ],
             staggeredTiles: [
               //Diary Item
-
-              StaggeredTile.extent(2,300),
-
-              //list to-do
-              StaggeredTile.extent(1,300),
+              StaggeredTile.extent(10,300),
 
               //US time tile
-              StaggeredTile.extent(1,80),
+              StaggeredTile.extent(6,80),
+
+              //list to-do
+              //StaggeredTile.extent(1,300),
 
               //Travelling cost
-              StaggeredTile.extent(1,205),
+              //StaggeredTile.extent(1,205),
               //temp page
-              StaggeredTile.extent(2,220),
+              //StaggeredTile.extent(2,220),
             ],
           ),
         ),

@@ -23,6 +23,7 @@ class _ChangeTimeLocationState extends State<ChangeTimeLocation> {
       'location' : setupTime.location,
       'time' : setupTime.time,
       'flag' : setupTime.flag,
+      'date' : setupTime.date
     });
   }
 

@@ -36,6 +36,7 @@ class _WrapperState extends State<Wrapper> {
         'location' : setupTime.location,
         'flag' : setupTime.flag,
         'time' : setupTime.time,
+        'date' : setupTime.date,
       });
     }
   }

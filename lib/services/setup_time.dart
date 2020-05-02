@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
@@ -5,10 +6,11 @@ import 'package:intl/intl.dart';
 class SetupTime{
   String location;
   String time;
+  String date;
   String flag;
   String url;
   
-  SetupTime({this.location,this.flag,this.time,this.url});
+  SetupTime({this.location,this.flag,this.time,this.date,this.url});
   
   Future<void> getTime() async{
     
@@ -25,8 +27,10 @@ class SetupTime{
 
       //making the date time
       DateTime currTime = DateTime.parse(datetime);
+//      print(datetime);
       currTime = currTime.add(Duration(hours: int.parse(offset)));
       time = DateFormat.jm().format(currTime);
+      date = DateFormat.MMMd().format(currTime);
     }
     catch(e){
       time = null;
