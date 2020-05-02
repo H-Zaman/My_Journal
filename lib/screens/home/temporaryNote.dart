@@ -3,7 +3,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:myapp/database/Database.dart';
+import 'package:myapp/localDatabase/Database.dart';
 import 'package:myapp/models/class_tempNote.dart';
 import 'package:myapp/shared/bg_image.dart';
 

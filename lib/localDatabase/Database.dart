@@ -33,6 +33,8 @@ class DBHelper {
         .execute("CREATE TABLE $TABLE ($ID INTEGER PRIMARY KEY, $LEVEL INTEGER, $ITEM TEXT)");
   }
 
+
+  //////////////////////////////NotePad///////////////////////////////////////
   Future<TodoItems> insert(TodoItems todoItems) async {
     var dbClient = await db;
     todoItems.id = await dbClient.insert(TABLE, todoItems.toMap());
@@ -61,6 +63,7 @@ class DBHelper {
     return await dbClient.update(TABLE, todoItems.toMap(),
         where: '$ID = ?', whereArgs: [todoItems.id]);
   }
+  //////////////////////////////NotePad///////////////////////////////////////
 
   Future close() async {
     var dbClient = await db;

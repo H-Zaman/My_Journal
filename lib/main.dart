@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
         '/time' : (context)=> ChangeTimeLocation(),
       },
 
+      darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
     );
   }
