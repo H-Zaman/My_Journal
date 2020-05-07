@@ -29,7 +29,9 @@ class _PackageFabState extends State<PackageFab> {
         ),
         IconButton(
           icon: Icon(Icons.list),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/diaryView');
+          },
         ),
         IconButton(
           icon: Icon(Icons.note),

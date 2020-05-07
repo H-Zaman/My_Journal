@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 const customInputDecoration = InputDecoration(
-  fillColor: Colors.white,
-  filled: true,
+//  fillColor: Colors.black,
+//  filled: true,
   enabledBorder: OutlineInputBorder(
     borderSide: BorderSide(
       color: Colors.blueAccent,

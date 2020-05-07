@@ -25,9 +25,18 @@ class _WrapperState extends State<Wrapper> {
 
     if(setupTime.time == null){
       //if no internet goes to temp page
-      Navigator.pushNamed(context, '/temp',arguments: {
+      /*Navigator.pushNamed(context, '/temp',arguments: {
         'internet': false,
       });
+*/
+    //TODO just temporary for testing
+      Navigator.pushNamed(context, '/home',arguments: {
+        'location' : 'test',
+        'flag' : 'bd.png',
+        'time' : 'testing',
+        'date' : 'testing',
+      });
+
     }
     else{
 
