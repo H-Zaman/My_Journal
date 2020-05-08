@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
+      //TODO route needs to be changed to wrapper '/'
+      initialRoute: '/diaryView',
       routes: {
         '/' : (context)=> Wrapper(),
         '/home' : (context)=> HomeScreen(),

@@ -39,7 +39,9 @@ class _PackageFabState extends State<PackageFab> {
         ),
         IconButton(
           icon: Icon(Icons.monetization_on),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/travel');
+          },
         ),
         IconButton(
           icon: Icon(Icons.speaker_notes_off),

@@ -49,6 +49,12 @@ class LocalDbDiary{
     return diary;
   }
 
+  Future<List<Map>> getDataSimp() async{
+    var dbc = await db;
+    List<Map> maps = await dbc.query(TABLE,columns: [DIARY,DATE]);
+    return maps;
+  }
+
   Future close() async{
     var dbc = await db;
     dbc.close();

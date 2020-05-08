@@ -6,12 +6,11 @@ class TravellingCost extends StatefulWidget {
 }
 
 class _TravellingCostState extends State<TravellingCost> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text(
-        'cost'
-      ),
+      child: Text('cost'),
     );
   }
 }
