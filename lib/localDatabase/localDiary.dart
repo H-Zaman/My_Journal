@@ -39,7 +39,7 @@ class LocalDbDiary{
 
   Future<List<Diary>> getData() async{
     var dbc = await db;
-    List<Map> maps = await dbc.query(TABLE,columns: [DIARY,DATE]);
+    List<Map> maps = await dbc.query(TABLE,columns: [ID,DIARY,DATE]);
     List<Diary> diary = [];
     if(maps.length > 0){
       for (int z = 0; z <maps.length; z++){
@@ -49,10 +49,9 @@ class LocalDbDiary{
     return diary;
   }
 
-  Future<List<Map>> getDataSimp() async{
-    var dbc = await db;
-    List<Map> maps = await dbc.query(TABLE,columns: [DIARY,DATE]);
-    return maps;
+  Future<int> delete(int id) async{
+    var dbClient = await db;
+    return await dbClient.delete(TABLE,where: '$ID = ?', whereArgs: [id]);
   }
 
   Future close() async{

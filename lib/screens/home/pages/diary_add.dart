@@ -54,6 +54,7 @@ class _DiaryADDState extends State<DiaryADD> {
                   SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
+                    //TODO add validation
                     child: TextFormField(
                       controller: controller,
                       onChanged: (val) => diaryString = val,

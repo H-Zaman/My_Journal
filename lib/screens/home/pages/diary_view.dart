@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:myapp/localDatabase/localDiary.dart';
 import 'package:myapp/models/class_DiaryItem.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -59,7 +61,7 @@ class _DiaryViewState extends State<DiaryView> {
           CarouselSlider(
             options: CarouselOptions(
               autoPlay: true,
-              autoPlayInterval: Duration(seconds: 2),
+              autoPlayInterval: Duration(seconds: 5),
               autoPlayAnimationDuration: Duration(seconds: 2),
               pauseAutoPlayOnTouch: true,
               height: 400,
@@ -71,10 +73,19 @@ class _DiaryViewState extends State<DiaryView> {
                 });
               },
             ),
+            //TODO add differant bg image for each item if possible
             items: data.map((item){
               return GestureDetector(
                 onTap: (){
-                  print(item.diary);
+                  showAnimatedDialog(
+                      animationType: DialogTransitionType.fadeScale,
+                      duration: Duration(milliseconds: 500),
+                      barrierDismissible: true,
+                      context: context,
+                      builder: (BuildContext context){
+                        return _animatedDialog(item.id,item.date,item.diary);
+                      }
+                  );
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,
@@ -93,20 +104,79 @@ class _DiaryViewState extends State<DiaryView> {
                     borderRadius: BorderRadius.circular(20.0)
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.all(18.0),
-                        child: Text(
-                          item.diary ?? 'Error Null Data Entry'
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadiusDirectional.circular(20.0),
+                            color: Colors.white12,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(10.0,12.0,0.0,20.0),
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white70,
+                                        borderRadius: BorderRadius.circular(10)
+                                    ),
+                                    padding: EdgeInsets.all(7.0),
+                                    child: Text(
+                                      item.id.toString(),
+                                      style: TextStyle(
+                                          color: Colors.black54,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    )
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(10.0, 12.0, 0.0, 20.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white70,
+                                    borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  padding: EdgeInsets.all(7.0),
+                                  child: Text(
+                                    item.date,
+                                    style: TextStyle(
+                                      color: Colors.black54,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold
+                                    ),
+                                  )
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(18.0),
-                        child: Text(
-                            item.date ?? 'Error Null Data Entry'
+                        padding: const EdgeInsets.all(12.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white30,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(18.0),
+                            child: Text(
+                              item.diary ?? 'Error Null Data Entry',
+                              style: TextStyle(
+                                letterSpacing: 1.5,
+                                textBaseline: TextBaseline.alphabetic,
+                                color: Colors.black,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -133,13 +203,95 @@ class _DiaryViewState extends State<DiaryView> {
     );
   }
 
+  _animatedDialog(int id, String date, String diary) {
+    String titleText = 'Entry : ' + id.toString() + ', ' + date;
+    return ClassicGeneralDialogWidget(
+      titleText: titleText,
+      contentText: diary,
+      actions: <Widget>[
+        FlatButton(
+          color: Colors.red,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          child: Row(
+            children: <Widget>[
+              Icon(Icons.delete_forever),
+              Text('Delete')
+            ],
+          ),
+          onPressed: (){
+            Navigator.pop(context);
+            showAnimatedDialog(
+              duration: Duration(milliseconds: 500),
+              curve: Curves.fastOutSlowIn,
+              animationType: DialogTransitionType.slideFromTopFade,
+              context: context,
+              builder: (BuildContext context){
+                return ClassicGeneralDialogWidget(
+                  titleText: 'Confirmation',
+                  contentText: 'Are you sure you want to delete this Entry',
+                  onPositiveClick: () async{
+                    await db.delete(id);
+                    Navigator.pop(context);
+                    refresh();
+                  },
+                  onNegativeClick: (){
+                    Navigator.pop(context);
+                  },
+                );
+              }
+            );
+          },
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Diary'),
-      ),
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context,bool innerBoxIsScrolled){
+          return <Widget>[
+            SliverAppBar(
+              expandedHeight: 150,
+              floating: false,
+              pinned: true,
+              actions: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RaisedButton(
+                    onPressed: (){
+                      Navigator.pushReplacementNamed(context, '/diaryAdd');
+                    },
+                    color: Colors.white10,
+                    shape: StadiumBorder(),
+                    child: Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.add,
+                          size: 18,
+                        ),
+                        SizedBox(width: 3,),
+                        Text('Add')
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              ),
+              flexibleSpace: FlexibleSpaceBar(
+                centerTitle: true,
+                title: Text('My Diary'),
+                //TODO just add diary view type image here
+                background: Image.asset('assets/backgrounds/blur/app-blurred-bg-14.jpg',fit: BoxFit.cover,),
+              ),
+            )
+          ];
+        },
       body: carouselSlider(),
+      )
     );
   }
 }
