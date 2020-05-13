@@ -83,6 +83,33 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  headingTile(){
+    return Material(
+      color: Colors.white10,
+      elevation: 20,
+      shadowColor: Colors.blueAccent,
+      borderRadius: BorderRadius.circular(25.0),
+      child: Center(child: Text('Heading will be used here')),
+    );
+  }
+
+  refreshGrid(){
+    return Material(
+      color: Colors.white10,
+      elevation: 20,
+      shadowColor: Colors.blueAccent,
+      borderRadius: BorderRadius.circular(25.0),
+      child: IconButton(
+        icon: Icon(Icons.refresh),
+        onPressed: (){
+          setState(() {
+            refresh();
+          });
+        },
+      ),
+    );
+  }
+
   diaryTile(){
     return FutureBuilder(
       future: diary,
@@ -193,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen> {
       color: Colors.white10,
       elevation: 20,
       shadowColor: Colors.blueGrey,
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(25),
       child: Center(
         child: Padding(
             padding: EdgeInsets.all(2.0),
@@ -254,6 +281,12 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisSpacing: 12.0,
             padding: EdgeInsets.all(15.0),
             children: <Widget>[
+              //heading
+              headingTile(),
+
+              //refresh
+              refreshGrid(),
+
               //Diary Tile
               diaryTile(),
               //DashItems To-do list
@@ -266,8 +299,12 @@ class _HomeScreenState extends State<HomeScreen> {
               //dashItems(Icons.view_list,'EXTRA',Colors.red),
             ],
             staggeredTiles: [
+              //Heading
+              StaggeredTile.extent(8, 40),
+              //refresh button
+              StaggeredTile.extent(2,40),
               //Diary Item
-              StaggeredTile.extent(10,300),
+              StaggeredTile.extent(10,230),
 
               //US time tile
               StaggeredTile.extent(6,80),

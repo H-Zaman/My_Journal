@@ -152,6 +152,10 @@ class _TemporaryNotePadState extends State<TemporaryNotePad> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 TextFormField(
+                  style: TextStyle(
+                    color: Colors.black
+                  ),
+                  textCapitalization: TextCapitalization.words,
                   controller: controller,
                   decoration: InputDecoration(labelText: 'Todo Item'),
                   validator: (val) => val.length == 0 ? 'Enter Item' : null,
@@ -172,20 +176,42 @@ class _TemporaryNotePadState extends State<TemporaryNotePad> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    FlatButton(
-                      onPressed: validate,
-                      child: Text(isUpdating ? 'Update' : 'Add'),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[600],
+                          borderRadius: BorderRadius.circular(20.0)
+                      ),
+                      child: FlatButton(
+                        onPressed: validate,
+                        child: Row(
+                          children: <Widget>[
+                            Icon(Icons.add,size: 20,),
+                            Text(isUpdating ? 'Update' : 'Add')
+                          ],
+                        ),
+                      ),
                     ),
-                    FlatButton(
-                      onPressed: () {
-                        setState(() {
-                          isUpdating = false;
-                          formShow = !formShow;
-                          fabshow = !fabshow;
-                        });
-                        clearItem();
-                      },
-                      child: Text('Cancel'),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[600],
+                        borderRadius: BorderRadius.circular(20.0)
+                      ),
+                      child: FlatButton(
+                        onPressed: () {
+                          setState(() {
+                            isUpdating = false;
+                            formShow = !formShow;
+                            fabshow = !fabshow;
+                          });
+                          clearItem();
+                        },
+                        child: Row(
+                          children: <Widget>[
+                            Icon(Icons.cancel,size: 20,),
+                            Text('Cancel')
+                          ],
+                        ),
+                      ),
                     )
                   ],
                 ),
@@ -232,9 +258,12 @@ class _TemporaryNotePadState extends State<TemporaryNotePad> {
                   ),
 
                   child: Padding(
-                    padding: const EdgeInsets.all(3.0),
+                    padding: const EdgeInsets.all(5.0),
                     child: Text(
-                        todoItems.item
+                      todoItems.item,
+                      style: TextStyle(
+                        color: Colors.black
+                      ),
                     ),
                   ),
                 ),
