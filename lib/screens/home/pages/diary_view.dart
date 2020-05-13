@@ -44,9 +44,10 @@ class _DiaryViewState extends State<DiaryView> {
       future: diary,
       builder: (context, snapshot){
         if(snapshot.hasData){
+//          print(snapshot.data);
           return carousel(snapshot.data);
         }
-        return CircularProgressIndicator();
+        return Center(child: CircularProgressIndicator());
       },
     );
   }
@@ -261,7 +262,8 @@ class _DiaryViewState extends State<DiaryView> {
                   padding: const EdgeInsets.all(8.0),
                   child: RaisedButton(
                     onPressed: (){
-                      Navigator.pushReplacementNamed(context, '/diaryAdd');
+//                      Navigator.pushReplacementNamed(context, '/diaryAdd');
+                    print(diary);
                     },
                     color: Colors.white10,
                     shape: StadiumBorder(),

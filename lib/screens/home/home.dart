@@ -1,8 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:myapp/fab_circular_menu/fab_package.dart';
+import 'package:myapp/localDatabase/localDiary.dart';
+import 'package:myapp/models/class_DiaryItem.dart';
 import 'package:myapp/shared/bg_image.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,6 +14,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  Future<List<Diary>> diary;
+  var db;
+
+  String date,note;
+
+  @override
+  void initState() {
+    super.initState();
+    db = LocalDbDiary();
+    refresh();
+  }
+
+  refresh(){
+    setState(() {
+      diary = db.getData();
+    });
+  }
 
   /*the function to make tiles with pre settings*/
   Material dashItems(IconData icon,String title,Color color) {
@@ -62,6 +83,156 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  diaryTile(){
+    return FutureBuilder(
+      future: diary,
+      builder: (context, snapshot){
+        if(snapshot.hasData){
+          return diaryTileMaker(snapshot.data);
+        }
+        return Center(child: CircularProgressIndicator(),);
+      },
+    );
+  }
+
+  diaryTileMaker(List<Diary> data){
+    int length = data.length;
+    return GestureDetector(
+      onTap: ()async{
+        Navigator.pushNamed(context, '/diaryView');
+      },
+      child: Material(
+        color: Colors.white10,
+        elevation: 20,
+        shadowColor: Colors.blueAccent,
+        borderRadius: BorderRadius.circular(25.0),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Center(
+                      child: Material(
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.circular(25.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: <Widget>[
+                              Icon(
+                                Icons.event_note,
+                                size: 20,
+                                color: Colors.amber,
+                              ),
+                              SizedBox(width: 5,),
+                              Text(
+                                'Diary',
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: Colors.amber,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 5,),
+                    Material(
+                      color: Colors.black12,
+                      borderRadius: BorderRadius.circular(25.0),
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text('Last Entry on : ${data[length-1].date}')
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 5,),
+                    Material(
+                      color: Colors.black12,
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width - 100,
+                          child: Center(
+                            child: Text(
+                              data[length-1].diary ?? 'Empty',
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 6,
+                              style: TextStyle(
+                                letterSpacing: 1.5,
+                                textBaseline: TextBaseline.alphabetic
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  timeTile(){
+    return Material(
+      color: Colors.white10,
+      elevation: 20,
+      shadowColor: Colors.blueGrey,
+      borderRadius: BorderRadius.circular(10),
+      child: Center(
+        child: Padding(
+            padding: EdgeInsets.all(2.0),
+            child: ListTile(
+              onTap: () async{
+                //goes to selecting time page
+                dynamic result = await Navigator.pushNamed(context, '/time');
+                print(diary);
+                setState(() {
+                  data = {
+                    'time' : result['time'],
+                    'location' : result['location'],
+                    'flag' : result['flag'],
+                    'date' : result['date'],
+                  };
+                });
+              },
+              leading: CircleAvatar(
+                radius: 20.0,
+                backgroundImage: AssetImage('assets/flag/${data['flag']}'),
+              ),
+              title: Text(
+                data['time'],
+                style: TextStyle(
+                    fontSize: 22
+                ),
+              ),
+              subtitle: Text(
+                data['date'],
+                style: TextStyle(
+                    fontSize: 18
+                ),
+              ),
+            )
+        ),
+      ),
+    );
+  }
+
   //a MAP to store all time related data's
   Map data = {};
 
@@ -83,52 +254,13 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisSpacing: 12.0,
             padding: EdgeInsets.all(15.0),
             children: <Widget>[
-              dashItems(Icons.graphic_eq,'Diary',Colors.red),
-              //dashItems(Icons.add,'todo list item',Colors.red),
+              //Diary Tile
+              diaryTile(),
+              //DashItems To-do list
 
               //Showing time Tile,
               //TODO make time auto update each minute
-              Material(
-                color: Colors.white10,
-                elevation: 20,
-                shadowColor: Colors.blueGrey,
-                borderRadius: BorderRadius.circular(10),
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(2.0),
-                    child: ListTile(
-                      onTap: () async{
-                        //goes to selecting time page
-                        dynamic result = await Navigator.pushNamed(context, '/time');
-                        setState(() {
-                          data = {
-                            'time' : result['time'],
-                            'location' : result['location'],
-                            'flag' : result['flag'],
-                            'date' : result['date'],
-                          };
-                        });
-                      },
-                      leading: CircleAvatar(
-                        radius: 20.0,
-                        backgroundImage: AssetImage('assets/flag/${data['flag']}'),
-                      ),
-                      title: Text(
-                        data['time'],
-                        style: TextStyle(
-                          fontSize: 22
-                        ),
-                      ),
-                      subtitle: Text(
-                        data['date'],
-                        style: TextStyle(
-                          fontSize: 18
-                        ),
-                      ),
-                    )
-                  ),
-                ),
-              ),
+              timeTile(),
 
               //dashItems(Icons.monetization_on,'Money',Colors.lime),
               //dashItems(Icons.view_list,'EXTRA',Colors.red),
