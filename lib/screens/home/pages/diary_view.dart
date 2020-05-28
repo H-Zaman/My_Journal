@@ -88,97 +88,99 @@ class _DiaryViewState extends State<DiaryView> {
                       }
                   );
                 },
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  margin: EdgeInsets.symmetric(horizontal: 15),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.blueAccent,
-                        Colors.lightBlueAccent
-                      ],
-                      stops: [
-                        0.2,0.8
-                      ],
-                    ),
+                child: SingleChildScrollView(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: EdgeInsets.symmetric(horizontal: 15),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.blueAccent,
+                          Colors.lightBlueAccent
+                        ],
+                        stops: [
+                          0.2,0.8
+                        ],
+                      ),
 //                color: Colors.grey,
-                    borderRadius: BorderRadius.circular(20.0)
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadiusDirectional.circular(20.0),
-                            color: Colors.white12,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(10.0,12.0,0.0,20.0),
-                                child: Container(
+                      borderRadius: BorderRadius.circular(20.0)
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadiusDirectional.circular(20.0),
+                              color: Colors.white12,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(10.0,12.0,0.0,20.0),
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.white70,
+                                          borderRadius: BorderRadius.circular(10)
+                                      ),
+                                      padding: EdgeInsets.all(7.0),
+                                      child: Text(
+                                        item.id.toString(),
+                                        style: TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold
+                                        ),
+                                      )
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(10.0, 12.0, 0.0, 20.0),
+                                  child: Container(
                                     decoration: BoxDecoration(
-                                        color: Colors.white70,
-                                        borderRadius: BorderRadius.circular(10)
+                                      color: Colors.white70,
+                                      borderRadius: BorderRadius.circular(10)
                                     ),
                                     padding: EdgeInsets.all(7.0),
                                     child: Text(
-                                      item.id.toString(),
+                                      item.date,
                                       style: TextStyle(
-                                          color: Colors.black54,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold
+                                        color: Colors.black54,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold
                                       ),
                                     )
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(10.0, 12.0, 0.0, 20.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white70,
-                                    borderRadius: BorderRadius.circular(10)
                                   ),
-                                  padding: EdgeInsets.all(7.0),
-                                  child: Text(
-                                    item.date,
-                                    style: TextStyle(
-                                      color: Colors.black54,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold
-                                    ),
-                                  )
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white30,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: Text(
-                              item.diary ?? 'Error Null Data Entry',
-                              style: TextStyle(
-                                letterSpacing: 1.5,
-                                textBaseline: TextBaseline.alphabetic,
-                                color: Colors.black,
-                                fontSize: 14,
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white30,
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(18.0),
+                              child: Text(
+                                item.diary ?? 'Error Null Data Entry',
+                                style: TextStyle(
+                                  letterSpacing: 1.5,
+                                  textBaseline: TextBaseline.alphabetic,
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -189,12 +191,12 @@ class _DiaryViewState extends State<DiaryView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: map<Widget>(data,(index,url){
               return Container(
-                width: 10.0,
-                height: 10.0,
+                width: _currentIndex == index ? 20.0 : 10.0,
+                height: _currentIndex == index ? 20.0 : 10.0,
                 margin: EdgeInsets.symmetric(vertical: 10.0,horizontal: 3.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: _currentIndex == index ? Colors.black : Colors.grey[300]
+                  color: _currentIndex == index ? Colors.grey[500] : Colors.grey[300],
                 ),
               );
             }),
@@ -206,44 +208,59 @@ class _DiaryViewState extends State<DiaryView> {
 
   _animatedDialog(int id, String date, String diary) {
     String titleText = 'Entry : ' + id.toString() + ', ' + date;
-    return ClassicGeneralDialogWidget(
-      titleText: titleText,
-      contentText: diary,
-      actions: <Widget>[
+    return Center(
+      child: SingleChildScrollView(
+        child: ClassicGeneralDialogWidget(
+          titleText: titleText,
+          contentText: diary,
+          actions: <Widget>[
         FlatButton(
-          color: Colors.red,
+        color: Colors.greenAccent,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           child: Row(
             children: <Widget>[
-              Icon(Icons.delete_forever),
-              Text('Delete')
+              Icon(Icons.cancel,color: Colors.white),
+              Text('Cancel',style: TextStyle(color: Colors.white))
             ],
           ),
-          onPressed: (){
-            Navigator.pop(context);
-            showAnimatedDialog(
-              duration: Duration(milliseconds: 500),
-              curve: Curves.fastOutSlowIn,
-              animationType: DialogTransitionType.slideFromTopFade,
-              context: context,
-              builder: (BuildContext context){
-                return ClassicGeneralDialogWidget(
-                  titleText: 'Confirmation',
-                  contentText: 'Are you sure you want to delete this Entry',
-                  onPositiveClick: () async{
-                    await db.delete(id);
-                    Navigator.pop(context);
-                    refresh();
-                  },
-                  onNegativeClick: (){
-                    Navigator.pop(context);
-                  },
+          onPressed: ()=> Navigator.pop(context),
+        ),
+            FlatButton(
+              color: Colors.red,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              child: Row(
+                children: <Widget>[
+                  Icon(Icons.delete_forever),
+                  Text('Delete')
+                ],
+              ),
+              onPressed: (){
+                Navigator.pop(context);
+                showAnimatedDialog(
+                  duration: Duration(milliseconds: 500),
+                  curve: Curves.fastOutSlowIn,
+                  animationType: DialogTransitionType.slideFromTopFade,
+                  context: context,
+                  builder: (BuildContext context){
+                    return ClassicGeneralDialogWidget(
+                      titleText: 'Confirmation',
+                      contentText: 'Are you sure you want to delete this Entry',
+                      onPositiveClick: () async{
+                        await db.delete(id);
+                        Navigator.pop(context);
+                        refresh();
+                      },
+                      onNegativeClick: (){
+                        Navigator.pop(context);
+                      },
+                    );
+                  }
                 );
-              }
-            );
-          },
-        )
-      ],
+              },
+            )
+          ],
+        ),
+      ),
     );
   }
 
@@ -262,8 +279,8 @@ class _DiaryViewState extends State<DiaryView> {
                   padding: const EdgeInsets.all(8.0),
                   child: RaisedButton(
                     onPressed: (){
-//                      Navigator.pushReplacementNamed(context, '/diaryAdd');
-                    print(diary);
+                      Navigator.pushReplacementNamed(context, '/diaryAdd');
+//                    print(diary);
                     },
                     color: Colors.white10,
                     shape: StadiumBorder(),
