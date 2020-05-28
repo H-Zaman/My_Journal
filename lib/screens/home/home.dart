@@ -225,6 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Padding(
             padding: EdgeInsets.all(2.0),
             child: ListTile(
+              contentPadding: EdgeInsets.symmetric(horizontal: 2.0),
               onTap: () async{
                 //goes to selecting time page
                 dynamic result = await Navigator.pushNamed(context, '/time');
@@ -239,22 +240,76 @@ class _HomeScreenState extends State<HomeScreen> {
                 });
               },
               leading: CircleAvatar(
-                radius: 20.0,
+                radius: 25.0,
                 backgroundImage: AssetImage('assets/flag/${data['flag']}'),
               ),
               title: Text(
                 data['time'],
                 style: TextStyle(
-                    fontSize: 22
+                    fontSize: 12
                 ),
               ),
               subtitle: Text(
                 data['date'],
                 style: TextStyle(
-                    fontSize: 18
+                    fontSize: 8
                 ),
               ),
             )
+        ),
+      ),
+    );
+  }
+
+  todoTile(IconData icon,String title,Color color) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/temp',arguments: {'internet' : true});
+      },
+      child: Material(
+        color: Colors.white10,
+        elevation: 20,
+        shadowColor: Colors.blueAccent,
+        borderRadius: BorderRadius.circular(25.0),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          title,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: color,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Material(
+                      color: color,
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Icon(
+                          icon,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -295,7 +350,8 @@ class _HomeScreenState extends State<HomeScreen> {
               //TODO make time auto update each minute
               timeTile(),
 
-              //dashItems(Icons.monetization_on,'Money',Colors.lime),
+              //Showing to-do itle
+              todoTile(Icons.view_list, 'EXTRA', Colors.red),
               //dashItems(Icons.view_list,'EXTRA',Colors.red),
             ],
             staggeredTiles: [
@@ -306,11 +362,11 @@ class _HomeScreenState extends State<HomeScreen> {
               //Diary Item
               StaggeredTile.extent(10,230),
 
-              //US time tile
-              StaggeredTile.extent(6,80),
+              //time tile
+              StaggeredTile.extent(4,80),
 
               //list to-do
-              //StaggeredTile.extent(1,300),
+              StaggeredTile.extent(6,300),
 
               //Travelling cost
               //StaggeredTile.extent(1,205),
